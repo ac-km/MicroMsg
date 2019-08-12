@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WxHook", "WxHook\WxHook.vcxproj", "{54D91543-9A58-41D6-8D29-9BF0F3194E81}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookPort", "HookPort\HookPort.vcxproj", "{04BEC77D-93E7-4F64-8F75-606202453009}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "Launcher\Launcher.vcxproj", "{B275AEF0-B67E-45E2-9158-0829DB242210}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54D91543-9A58-41D6-8D29-9BF0F3194E81}.Debug|Win32.ActiveCfg = Debug|Win32
+		{54D91543-9A58-41D6-8D29-9BF0F3194E81}.Debug|Win32.Build.0 = Debug|Win32
+		{54D91543-9A58-41D6-8D29-9BF0F3194E81}.Release|Win32.ActiveCfg = Release|Win32
+		{54D91543-9A58-41D6-8D29-9BF0F3194E81}.Release|Win32.Build.0 = Release|Win32
+		{04BEC77D-93E7-4F64-8F75-606202453009}.Debug|Win32.ActiveCfg = Debug|Win32
+		{04BEC77D-93E7-4F64-8F75-606202453009}.Debug|Win32.Build.0 = Debug|Win32
+		{04BEC77D-93E7-4F64-8F75-606202453009}.Release|Win32.ActiveCfg = Release|Win32
+		{04BEC77D-93E7-4F64-8F75-606202453009}.Release|Win32.Build.0 = Release|Win32
+		{B275AEF0-B67E-45E2-9158-0829DB242210}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B275AEF0-B67E-45E2-9158-0829DB242210}.Debug|Win32.Build.0 = Debug|Win32
+		{B275AEF0-B67E-45E2-9158-0829DB242210}.Release|Win32.ActiveCfg = Release|Win32
+		{B275AEF0-B67E-45E2-9158-0829DB242210}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

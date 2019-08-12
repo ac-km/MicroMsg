@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{04BEC77D-93E7-4F64-8F75-606202453009}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>HookPort</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;HOOKPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;HOOKPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Common\DebugLog.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ControlService.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_CreateService.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_DeleteService.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_LockServiceDatabase.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_SetServiceStatus.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_StartService.h" />
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_UnlockServiceDatabase.h" />
+    <ClInclude Include="CALLBACK\Dispatch_CALLBACK.h" />
+    <ClInclude Include="CloneAPI\CloneAPI_ADVAPI32.h" />
+    <ClInclude Include="CloneAPI\CloneAPI_FLTLIB.h" />
+    <ClInclude Include="CloneAPI\CloneAPI_KERNEL32.h" />
+    <ClInclude Include="CloneAPI\CloneAPI_SHELL32.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="HookPort.h" />
+    <ClInclude Include="Inject\IATModifier.h" />
+    <ClInclude Include="Inject\IATProcess.h" />
+    <ClInclude Include="Inject\RemoteInjection.h" />
+    <ClInclude Include="InlineHook.h" />
+    <ClInclude Include="KERNEL32\Dispatch_KERNEL32.h" />
+    <ClInclude Include="KERNEL32\Dispatch_KERNEL32_CreateProcessInternal.h" />
+    <ClInclude Include="LDasm.h" />
+    <ClInclude Include="NativeAPI_NTDLL.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_LdrLoadDll.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_LdrUnloadDll.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtAdjustPrivilegesToken.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtAllocateVirtualMemory.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtClose.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtConnectPort.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateEvent.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateMutant.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreatePort.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateProcess.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateProcessEx.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateSection.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateSemaphore.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateThread.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtDeleteFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtDeleteKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtDeleteValueKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtEnumerateKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtEnumerateValueKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtFsControlFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtGetContextThread.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtLoadDriver.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeMultipleKeys.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenEvent.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenMutant.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenProcess.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenSection.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenSemaphore.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenThread.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtProtectVirtualMemory.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryAttributesFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryDirectoryFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryFullAttributesFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryInformationFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryInformationProcess.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryInformationThread.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryMultipleValueKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryObject.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQuerySystemInformation.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryValueKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtReadFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtRenameKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtResumeThread.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSaveKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSecureConnectPort.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetInformationFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetInformationToken.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetSecurityObject.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetSystemInformation.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetValueKey.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSystemDebugControl.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtWriteFile.h" />
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtWriteVirtualMemory.h" />
+    <ClInclude Include="SELF\Dispatch_SELF.h" />
+    <ClInclude Include="SELF\Dispatch_SELF_Login.h" />
+    <ClInclude Include="SELF\Dispatch_SELF_RecvMsg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="USER32\Dispatch_USER32.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_CreateWindowEx.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_ExitWindowsEx.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_GetWindowThreadProcessId.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_PostMessage.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_SendMessage.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_SetWindowLong.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_SetWindowsHookEx.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_SetWindowText.h" />
+    <ClInclude Include="USER32\Dispatch_USER32_UnhookWindowsHookEx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Common\DebugLog.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ControlService.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_CreateService.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_DeleteService.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_LockServiceDatabase.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_SetServiceStatus.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_StartService.cpp" />
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_UnlockServiceDatabase.cpp" />
+    <ClCompile Include="CALLBACK\Dispatch_CALLBACK.cpp" />
+    <ClCompile Include="CloneAPI\CloneAPI_ADVAPI32.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CloneAPI\CloneAPI_FLTLIB.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CloneAPI\CloneAPI_KERNEL32.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CloneAPI\CloneAPI_SHELL32.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="HookPort.cpp" />
+    <ClCompile Include="Inject\IATModifier.cpp" />
+    <ClCompile Include="Inject\IATProcess.cpp" />
+    <ClCompile Include="Inject\RemoteInjection.cpp" />
+    <ClCompile Include="InlineHook.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="KERNEL32\Dispatch_KERNEL32.cpp" />
+    <ClCompile Include="KERNEL32\Dispatch_KERNEL32_CreateProcessInternal.cpp" />
+    <ClCompile Include="NativeAPI_NTDLL.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_LdrLoadDll.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_LdrUnloadDll.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtAdjustPrivilegesToken.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtAllocateVirtualMemory.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtClose.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtConnectPort.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateEvent.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateMutant.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreatePort.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateProcess.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateProcessEx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateSection.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateSemaphore.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateThread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtDeleteFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtDeleteKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtDeleteValueKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtEnumerateKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtEnumerateValueKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtFsControlFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtGetContextThread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtLoadDriver.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeMultipleKeys.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenEvent.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenMutant.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenProcess.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenSection.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenSemaphore.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenThread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtProtectVirtualMemory.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryAttributesFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryDirectoryFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryFullAttributesFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryInformationFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryInformationProcess.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryInformationThread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryMultipleValueKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryObject.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQuerySystemInformation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryValueKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtReadFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtRenameKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtResumeThread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSaveKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSecureConnectPort.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetInformationFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetInformationToken.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetSecurityObject.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetSystemInformation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetValueKey.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSystemDebugControl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtWriteFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtWriteVirtualMemory.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SELF\Dispatch_SELF.cpp" />
+    <ClCompile Include="SELF\Dispatch_SELF_Login.cpp" />
+    <ClCompile Include="SELF\Dispatch_SELF_RecvMsg.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_CreateWindowEx.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_ExitWindowsEx.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_GetWindowThreadProcessId.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_PostMessage.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_SendMessage.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_SetWindowLong.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_SetWindowsHookEx.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_SetWindowText.cpp" />
+    <ClCompile Include="USER32\Dispatch_USER32_UnhookWindowsHookEx.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

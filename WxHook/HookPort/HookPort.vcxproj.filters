@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Hook">
+      <UniqueIdentifier>{4a7b934e-f7aa-4915-83b1-8cafe300d1c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch">
+      <UniqueIdentifier>{b00072a6-5257-4e08-8c52-dc77e9a3cc11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch\NTDLL">
+      <UniqueIdentifier>{93011e85-90cc-4a52-868f-e0726ac15e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NativeAPI">
+      <UniqueIdentifier>{b0eec1f9-29be-4c33-b32f-d91c85c126a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CloneAPI">
+      <UniqueIdentifier>{56e406ce-beb8-4769-9cc5-69e9f2bf4c94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Help">
+      <UniqueIdentifier>{788a577f-3c77-4a7d-9a0a-97a73d1612a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inject">
+      <UniqueIdentifier>{c86cd8ce-3abf-4a9a-ba15-eddd3d93e0e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch\ADVAPI32">
+      <UniqueIdentifier>{702460a3-841c-4776-a4c6-1e79750e4a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch\KERNEL32">
+      <UniqueIdentifier>{f5ffda54-1515-48b1-98fa-207034a04994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch\USER32">
+      <UniqueIdentifier>{7fe1f02e-ac88-47ce-ab26-131b54b6b1e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{11fcc5ea-d559-469a-81b9-8cc89e19bc6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch\SELF">
+      <UniqueIdentifier>{faddec9a-bd12-4185-a7d4-22ce7ee2ddc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch\CALLBACK">
+      <UniqueIdentifier>{5926a989-2eed-495d-ba2b-249cfab450d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HookPort.h">
+      <Filter>Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_LdrLoadDll.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_LdrUnloadDll.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtAdjustPrivilegesToken.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtAllocateVirtualMemory.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtClose.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtConnectPort.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateEvent.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateMutant.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreatePort.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateProcess.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateProcessEx.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateSection.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateSemaphore.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtCreateThread.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtDeleteFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtDeleteKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtDeleteValueKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtEnumerateKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtEnumerateValueKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtFsControlFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtGetContextThread.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtLoadDriver.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeMultipleKeys.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenEvent.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenMutant.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenProcess.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenSection.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenSemaphore.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtOpenThread.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtProtectVirtualMemory.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryAttributesFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryDirectoryFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryFullAttributesFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryInformationFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryInformationProcess.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryInformationThread.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryMultipleValueKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryObject.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQuerySystemInformation.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtQueryValueKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtReadFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtRenameKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtResumeThread.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSaveKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSecureConnectPort.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetInformationFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetInformationToken.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetSecurityObject.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetSystemInformation.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSetValueKey.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSystemDebugControl.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtWriteFile.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Ntdll\Dispatch_NTDLL_NtWriteVirtualMemory.h">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClInclude>
+    <ClInclude Include="NativeAPI_NTDLL.h">
+      <Filter>NativeAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="CloneAPI\CloneAPI_ADVAPI32.h">
+      <Filter>CloneAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="CloneAPI\CloneAPI_FLTLIB.h">
+      <Filter>CloneAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="CloneAPI\CloneAPI_KERNEL32.h">
+      <Filter>CloneAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="CloneAPI\CloneAPI_SHELL32.h">
+      <Filter>CloneAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="InlineHook.h">
+      <Filter>Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="LDasm.h">
+      <Filter>Help</Filter>
+    </ClInclude>
+    <ClInclude Include="Inject\IATModifier.h">
+      <Filter>Inject</Filter>
+    </ClInclude>
+    <ClInclude Include="Inject\IATProcess.h">
+      <Filter>Inject</Filter>
+    </ClInclude>
+    <ClInclude Include="Inject\RemoteInjection.h">
+      <Filter>Inject</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ControlService.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_CreateService.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_DeleteService.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_LockServiceDatabase.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_SetServiceStatus.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_StartService.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_UnlockServiceDatabase.h">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClInclude>
+    <ClInclude Include="KERNEL32\Dispatch_KERNEL32.h">
+      <Filter>Dispatch\KERNEL32</Filter>
+    </ClInclude>
+    <ClInclude Include="KERNEL32\Dispatch_KERNEL32_CreateProcessInternal.h">
+      <Filter>Dispatch\KERNEL32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_CreateWindowEx.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_ExitWindowsEx.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_GetWindowThreadProcessId.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_PostMessage.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_SendMessage.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_SetWindowLong.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_SetWindowsHookEx.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_SetWindowText.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="USER32\Dispatch_USER32_UnhookWindowsHookEx.h">
+      <Filter>Dispatch\USER32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\DebugLog.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="SELF\Dispatch_SELF.h">
+      <Filter>Dispatch\SELF</Filter>
+    </ClInclude>
+    <ClInclude Include="SELF\Dispatch_SELF_RecvMsg.h">
+      <Filter>Dispatch\SELF</Filter>
+    </ClInclude>
+    <ClInclude Include="CALLBACK\Dispatch_CALLBACK.h">
+      <Filter>Dispatch\CALLBACK</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SELF\Dispatch_SELF_Login.h">
+      <Filter>Dispatch\SELF</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HookPort.cpp">
+      <Filter>Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_LdrLoadDll.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_LdrUnloadDll.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtAdjustPrivilegesToken.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtAllocateVirtualMemory.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtClose.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtConnectPort.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateEvent.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateMutant.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreatePort.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateProcess.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateProcessEx.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateSection.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateSemaphore.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtCreateThread.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtDeleteFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtDeleteKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtDeleteValueKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtEnumerateKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtEnumerateValueKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtFsControlFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtGetContextThread.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtLoadDriver.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtNotifyChangeMultipleKeys.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenEvent.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenMutant.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenProcess.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenSection.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenSemaphore.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtOpenThread.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtProtectVirtualMemory.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryAttributesFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryDirectoryFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryFullAttributesFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryInformationFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryInformationProcess.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryInformationThread.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryMultipleValueKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryObject.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQuerySystemInformation.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtQueryValueKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtReadFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtRenameKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtResumeThread.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSaveKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSecureConnectPort.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetInformationFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetInformationToken.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetSecurityObject.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetSystemInformation.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSetValueKey.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtSystemDebugControl.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtWriteFile.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Ntdll\Dispatch_NTDLL_NtWriteVirtualMemory.cpp">
+      <Filter>Dispatch\NTDLL</Filter>
+    </ClCompile>
+    <ClCompile Include="NativeAPI_NTDLL.cpp">
+      <Filter>NativeAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="CloneAPI\CloneAPI_ADVAPI32.cpp">
+      <Filter>CloneAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="CloneAPI\CloneAPI_FLTLIB.cpp">
+      <Filter>CloneAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="CloneAPI\CloneAPI_KERNEL32.cpp">
+      <Filter>CloneAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="CloneAPI\CloneAPI_SHELL32.cpp">
+      <Filter>CloneAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="InlineHook.cpp">
+      <Filter>Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="Inject\IATModifier.cpp">
+      <Filter>Inject</Filter>
+    </ClCompile>
+    <ClCompile Include="Inject\IATProcess.cpp">
+      <Filter>Inject</Filter>
+    </ClCompile>
+    <ClCompile Include="Inject\RemoteInjection.cpp">
+      <Filter>Inject</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ControlService.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_CreateService.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_DeleteService.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_LockServiceDatabase.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_SetServiceStatus.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_StartService.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_UnlockServiceDatabase.cpp">
+      <Filter>Dispatch\ADVAPI32</Filter>
+    </ClCompile>
+    <ClCompile Include="KERNEL32\Dispatch_KERNEL32.cpp">
+      <Filter>Dispatch\KERNEL32</Filter>
+    </ClCompile>
+    <ClCompile Include="KERNEL32\Dispatch_KERNEL32_CreateProcessInternal.cpp">
+      <Filter>Dispatch\KERNEL32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_CreateWindowEx.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_ExitWindowsEx.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_GetWindowThreadProcessId.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_PostMessage.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_SendMessage.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_SetWindowLong.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_SetWindowsHookEx.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_SetWindowText.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="USER32\Dispatch_USER32_UnhookWindowsHookEx.cpp">
+      <Filter>Dispatch\USER32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\DebugLog.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="SELF\Dispatch_SELF.cpp">
+      <Filter>Dispatch\SELF</Filter>
+    </ClCompile>
+    <ClCompile Include="SELF\Dispatch_SELF_RecvMsg.cpp">
+      <Filter>Dispatch\SELF</Filter>
+    </ClCompile>
+    <ClCompile Include="CALLBACK\Dispatch_CALLBACK.cpp">
+      <Filter>Dispatch\CALLBACK</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SELF\Dispatch_SELF_Login.cpp">
+      <Filter>Dispatch\SELF</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
