@@ -41,6 +41,7 @@ OnLdrLoadDll(
 			ModuleFileName,
 			ModuleHandle
 			);
+		return nRet;
 	}
 
 	nRet = pfnLdrLoadDll(
