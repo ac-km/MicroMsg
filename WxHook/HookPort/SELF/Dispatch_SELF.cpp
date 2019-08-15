@@ -35,21 +35,26 @@ int Dispatch_SELF_Start(HANDLE hWeChatWin)
 	//Patch API
 	//
 
-	//WxLogin
+	//WxLoginForHeadUrl
 	InlineHookFunc(
-		(__pfnWxLogin)((DWORD)hWeChatWin + 0x2934F4),
-		OnWxLogin,
-		(void **)&pfnWxLogin
+		(__pfnWxLogin)((DWORD)hWeChatWin + 0x1F1D6B),
+		OnWxLoginForHeadUrl,
+		(void **)&pfnWxLoginForHeadUrl
 		);
+
+	//WxLoginForWxid
+	InlineHookFunc(
+		(__pfnWxLogin)((DWORD)hWeChatWin + 0x2B770F),
+		OnWxLoginForWxid,
+		(void **)&pfnWxLoginForWxid
+	);
 
 	//WxRecvMsg
 	InlineHookFunc(
-		(__pfnWxRecvMsg)((DWORD)hWeChatWin + 0x2D2C1D),
+		(__pfnWxRecvMsg)((DWORD)hWeChatWin + 0x3114DB),
 		OnWxRecvMsg,
 		(void **)&pfnWxRecvMsg
 		);
-
-	//·½·¨2
 	
 	return 1;
 }

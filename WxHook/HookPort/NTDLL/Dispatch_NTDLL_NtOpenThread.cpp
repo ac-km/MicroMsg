@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <ntsecapi.h>
+#include<stdio.h>
 
 #include "./Dispatch_NTDLL_NtOpenThread.h"
 #include"../../Common/DebugLog.h"
@@ -99,10 +100,10 @@ OnNtOpenThread(
 #ifdef Dbg
 				dwProcessId = (DWORD)(threadinfo.ClientId.UniqueProcess);
 
-				WCHAR szDebugString[256] = {0};
-				wsprintf(
+				CHAR szDebugString[256] = {0};
+				sprintf(
 					szDebugString,
-					L"OnNtOpenThread dwProcessId=[%d]",
+					"OnNtOpenThread dwProcessId=[%d]",
 					dwProcessId
 					);
 				DebugLog(DbgInfo,szDebugString);

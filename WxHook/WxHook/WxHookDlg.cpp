@@ -7,6 +7,7 @@
 #include "WxHookDlg.h"
 #include "afxdialogex.h"
 #include"../Common/Config.h"
+#include"pipe.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -59,6 +60,7 @@ void CWxHookDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Text(pDX, IDC_MFCEDITBROWSE1, strWxPath);
+	DDX_Control(pDX, IDC_LIST1, mViewList);
 }
 
 BEGIN_MESSAGE_MAP(CWxHookDlg, CDialogEx)
@@ -236,6 +238,7 @@ void CWxHookDlg::OnBnClickedButton1()
 		CloseHandle(ProcessInfo.hProcess);
 
 		bIsLauncherCalled = TRUE;
+		start_pipe();
 	}
 	else
 	{
@@ -248,4 +251,23 @@ void CWxHookDlg::OnBnClickedButton1()
 void CWxHookDlg::OnBnClickedButton2()
 {
 	// TODO:  在此添加控件通知处理程序代码
+	mViewList.AddString("11111111111111111111");
+}
+
+void CWxHookDlg::start_pipe()
+{
+	DWORD dwThreadId = 0;
+	CreateThread(
+		NULL,//default security attributes
+		0,//use default stack size
+		pipe_server,//thread function
+		&mViewList.m_hWnd,//argument to thread function
+		0,//use default creation flags
+		&dwThreadId);//returns the thread identifier
+						//Check there turn value for success.
+	if (dwThreadId == NULL)
+	{
+		return;
+	}
+
 }

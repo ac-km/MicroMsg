@@ -48,7 +48,7 @@ OnNtGetContextThread(
 		);
 
 #ifdef Dbg
-	DebugLog(DbgInfo,L"Called");
+	DebugLog(DbgInfo,"Called");
 #endif
 
 	return nRet;

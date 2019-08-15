@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <ntsecapi.h>
+#include<stdio.h>
 
 #include "./Dispatch_NTDLL_NtCreateThread.h"
 #include"../../Common/DebugLog.h"
@@ -72,10 +73,10 @@ OnNtCreateThread(
 #ifdef Dbg
 	DWORD dwProcessId = (DWORD)(ClientId->UniqueProcess);
 
-	WCHAR szDebugString[256] = {0};
-	wsprintf(
+	CHAR szDebugString[256] = {0};
+	sprintf(
 		szDebugString,
-		L"OnNtCreateThread dwProcessId=[%d]",
+		"OnNtCreateThread dwProcessId=[%d]",
 		dwProcessId
 		);
 	DebugLog(DbgInfo,szDebugString);
@@ -83,7 +84,7 @@ OnNtCreateThread(
 	}
 
 #ifdef Dbg
-	DebugLog(DbgInfo,L"Called");
+	DebugLog(DbgInfo,"Called");
 #endif
 
 	return nRet;

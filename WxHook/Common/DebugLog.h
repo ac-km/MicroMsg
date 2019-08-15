@@ -14,6 +14,6 @@
 //
 #define DbgInfo __FILE__,__FUNCTION__,__LINE__
 
+ 
 
-
-void DebugLog(LPCSTR lpFILE, LPCSTR lpFUNCTION, int lpLINE, LPCWSTR lpOutputString);
+void DebugLog(LPCSTR lpFILE, LPCSTR lpFUNCTION, int lpLINE, LPCSTR lpOutputString);

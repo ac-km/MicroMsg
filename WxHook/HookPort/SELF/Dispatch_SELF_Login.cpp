@@ -7,25 +7,27 @@
 #include"../HookPort.h"
 #include "../Inject/RemoteInjection.h"
 #include"../Common.h"
+#include"../pipe.h"
 
 
 
 //
 //Global
 //
-__pfnWxLogin pfnWxLogin = NULL;
+__pfnWxLogin pfnWxLoginForHeadUrl = NULL;
+__pfnWxLogin pfnWxLoginForWxid = NULL;
 
 
 
 //
-//Dispatch_SELF_WxRecvMsg Functions
+//Dispatch_SELF_Login Functions
 //
 VOID
 WINAPI
-OnWxLogin()
+OnWxLoginForHeadUrl()
 {
 #ifdef Dbg
-	DebugLog(DbgInfo, L"login...");
+	DebugLog(DbgInfo, "OnWxLoginForHeadUrl...");
 #endif
 
 	DWORD* saveEBP = 0;
@@ -35,74 +37,64 @@ OnWxLogin()
 	}
 	saveEBP = (DWORD*)*saveEBP;
 
-	//esi指向了微信号，
-	//ebp+0x24指向了微信id。
-
-
-	//BOOL isGroupMsg = FALSE;
-
-	////0x294：消息类型
-
-	////0x2E8:群聊的话为房间号，私聊为发送方
-	//WCHAR *wxBuf = (WCHAR*)*(DWORD*)((char*)saveEBP - 0x2E8);
-	//DWORD len = GetWBufferLen(wxBuf);
-	//if (len> 0)
-	//{
-	//	WCHAR *buf = (WCHAR*)malloc(len);
-	//	memcpy(buf, wxBuf, len);
-	//	//判断是否为群聊
-	//	std::wstring str;
-	//	str.append(buf, len / 2);
-	//	if (str.find(L"@chatroom")!=std::string::npos)
-	//	{
-	//		isGroupMsg = TRUE;
-	//	}
-	//	OutputDebugStringW(buf);
-	//	free(buf);
-	//}
-
-	////接收方
-	//wxBuf = (WCHAR*)*(DWORD*)((char*)saveEBP - 0x2FC);
-	//len = GetWBufferLen(wxBuf);
-	//if (len> 0)
-	//{
-	//	WCHAR *buf = (WCHAR*)malloc(len);
-	//	memcpy(buf, wxBuf, len);
-	//	OutputDebugStringW(buf);
-	//	free(buf);
-	//}
-
-	////消息内容
-	//wxBuf = (WCHAR*)*(DWORD*)((char*)saveEBP - 0x460);
-	//len = GetWBufferLen(wxBuf);
-	//if (len> 0)
-	//{
-	//	WCHAR *buf = (WCHAR*)malloc(len);
-	//	memcpy(buf, wxBuf, len);
-	//	OutputDebugStringW(buf);
-	//	free(buf);
-	//}
-
-	////0x3AC：未知的串
-
-	////0x3C0:如果是群聊，此处为发送方wxid
-	//if (isGroupMsg)
-	//{
-	//	wxBuf = (WCHAR*)*(DWORD*)((char*)saveEBP - 0x3C0);
-	//	len = GetWBufferLen(wxBuf);
-	//	if (len> 0)
-	//	{
-	//		WCHAR *buf = (WCHAR*)malloc(len);
-	//		memcpy(buf, wxBuf, len);
-	//		OutputDebugStringW(buf);
-	//		free(buf);
-	//	}
-	//}
-
+	WCHAR *wxBuf = (WCHAR*)*(DWORD*)((char*)saveEBP - 0x60);
+	DWORD len = GetWBufferLen(wxBuf);
+	if (len> 0)
+	{
+		std::string r=MyWideCharToMultiByte((BYTE*)wxBuf, len);
+#ifdef Dbg
+		DebugLog(DbgInfo, (char*)r.c_str());
+#endif
+		pipe_start_thread((LPVOID)r.c_str());
+	}
 	__asm
 	{
 		mov esp,ebp
 		pop ebp
-		jmp pfnWxLogin;
+		jmp pfnWxLoginForHeadUrl;
+	}
+}
+
+VOID
+WINAPI
+OnWxLoginForWxid()
+{
+#ifdef Dbg
+	DebugLog(DbgInfo, "OnWxLoginForWxid...");
+#endif
+
+	DWORD* saveEBP = 0;
+	__asm
+	{
+		mov saveEBP, ebp
+	}
+	saveEBP = (DWORD*)*saveEBP;
+
+	//取wxid
+	CHAR *wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP + 0x8);
+	DWORD len = strlen(wxBuf);
+	if (len> 0)
+	{
+#ifdef Dbg
+		DebugLog(DbgInfo, wxBuf);
+#endif
+		pipe_start_thread((LPVOID)wxBuf);
+	}
+	//取微信号
+	wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP + 0x70);
+	len = strlen(wxBuf);
+	if (len> 0)
+	{
+#ifdef Dbg
+		DebugLog(DbgInfo, wxBuf);
+#endif
+		pipe_start_thread((LPVOID)wxBuf);
+	}
+
+	__asm
+	{
+		mov esp, ebp
+		pop ebp
+		jmp pfnWxLoginForWxid;
 	}
 }

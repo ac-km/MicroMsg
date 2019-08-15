@@ -73,8 +73,8 @@ OnNtResumeThread(
 			if( IsProcessPatched(dwProcessId,TRUE) == FALSE )
 			{
 #ifdef Dbg
-				WCHAR szDebugString[256] = {0};
-				wsprintf(szDebugString,L"OnNtResumeThread dwProcessId=[%d]",dwProcessId);
+				CHAR szDebugString[256] = {0};
+				sprintf(szDebugString,"OnNtResumeThread dwProcessId=[%d]",dwProcessId);
 				DebugLog(DbgInfo,szDebugString);
 #endif
 
@@ -110,8 +110,8 @@ OnNtResumeThread(
 			else
 			{
 #ifdef Dbg
-			WCHAR szDebugString[256] = {0};
-			wsprintf(szDebugString,L"Already Patched! dwProcessId=[%d]",dwProcessId);
+			CHAR szDebugString[256] = {0};
+			sprintf(szDebugString,"Already Patched! dwProcessId=[%d]",dwProcessId);
 			DebugLog(DbgInfo,szDebugString);
 #endif
 			}
@@ -120,7 +120,7 @@ OnNtResumeThread(
 	else
 	{
 #ifdef Dbg
-		DebugLog(DbgInfo,L"NtQueryInformationThread ERROR!!!!!");
+		DebugLog(DbgInfo,"NtQueryInformationThread ERROR!!!!!");
 #endif
 	}
 

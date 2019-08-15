@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
 // CWxHookDlg ¶Ô»°¿ò
 class CWxHookDlg : public CDialogEx
@@ -33,6 +34,8 @@ public:
 	afx_msg void OnBnClickedButton2();
 private:
 	CString GetWxPath();
+	void start_pipe();
 public:
 	CString strWxPath;
+	CListBox mViewList;
 };

@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\DebugLog.h" />
+    <ClInclude Include="..\Common\LOG.h" />
     <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32.h" />
     <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.h" />
     <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Ntdll\Dispatch_NTDLL_NtSystemDebugControl.h" />
     <ClInclude Include="Ntdll\Dispatch_NTDLL_NtWriteFile.h" />
     <ClInclude Include="Ntdll\Dispatch_NTDLL_NtWriteVirtualMemory.h" />
+    <ClInclude Include="pipe.h" />
     <ClInclude Include="SELF\Dispatch_SELF.h" />
     <ClInclude Include="SELF\Dispatch_SELF_Login.h" />
     <ClInclude Include="SELF\Dispatch_SELF_RecvMsg.h" />
@@ -184,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Common\DebugLog.cpp" />
+    <ClCompile Include="..\Common\LOG.cpp" />
     <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32.cpp" />
     <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.cpp" />
     <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.cpp" />
@@ -408,6 +411,7 @@
     <ClCompile Include="Ntdll\Dispatch_NTDLL_NtWriteVirtualMemory.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="pipe.cpp" />
     <ClCompile Include="SELF\Dispatch_SELF.cpp" />
     <ClCompile Include="SELF\Dispatch_SELF_Login.cpp" />
     <ClCompile Include="SELF\Dispatch_SELF_RecvMsg.cpp" />

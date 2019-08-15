@@ -13,8 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Debug">
-      <UniqueIdentifier>{44d6b21e-db97-4f2d-bbf5-0f69d8318229}</UniqueIdentifier>
+    <Filter Include="pipe">
+      <UniqueIdentifier>{2ad0ca1a-68b6-4d4e-8286-229342b20108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{b6ab73c9-b5b7-4210-ae6c-ea1d730e907a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,8 +39,14 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="pipe.h">
+      <Filter>pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\LOG.h">
+      <Filter>common</Filter>
+    </ClInclude>
     <ClInclude Include="..\Common\DebugLog.h">
-      <Filter>Debug</Filter>
+      <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -50,8 +59,14 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="pipe.cpp">
+      <Filter>pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\LOG.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\Common\DebugLog.cpp">
-      <Filter>Debug</Filter>
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

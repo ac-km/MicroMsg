@@ -167,7 +167,7 @@ BOOL CHookInit::BeginHookPortRoutine()
 	if (!hDLL)
 	{
 #ifdef Dbg
-		DebugLog(DbgInfo, L"ERROR");
+		DebugLog(DbgInfo, "ERROR");
 #endif
 
 		return FALSE;
@@ -241,7 +241,7 @@ BOOL CHookInit::BeginLauncherRunProgram(IN CONST CHAR * lpExeName)
 		else
 		{
 #ifdef Dbg
-			DebugLog(DbgInfo, L"ERROR");
+			DebugLog(DbgInfo, "ERROR");
 #endif
 			return FALSE;
 		}

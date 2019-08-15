@@ -16,8 +16,8 @@
     <Filter Include="HOOK">
       <UniqueIdentifier>{0026c35d-5c45-4cb7-85cd-1cc1c0c3fb81}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Debug">
-      <UniqueIdentifier>{dd1e7c5f-5424-4853-9c69-4a964515043b}</UniqueIdentifier>
+    <Filter Include="common">
+      <UniqueIdentifier>{4adee1cb-6bbf-478d-9a99-40e38d6b149a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -28,7 +28,10 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\DebugLog.cpp">
-      <Filter>Debug</Filter>
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\LOG.cpp">
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,7 +39,10 @@
       <Filter>HOOK</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\DebugLog.h">
-      <Filter>Debug</Filter>
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\LOG.h">
+      <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

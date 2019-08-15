@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <ntsecapi.h>
 #include <tlhelp32.h>
+#include<stdio.h>
 
 #include "./RemoteInjection.h"
 #include "../../Common/DebugLog.h"
@@ -198,7 +199,7 @@ DWORD Inject
     if( !hProc )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,L"ERROR");
+		DebugLog(DbgInfo,"ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -207,7 +208,7 @@ DWORD Inject
     if( !pfnRmtFunc )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,L"ERROR");
+		DebugLog(DbgInfo,"ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -216,7 +217,7 @@ DWORD Inject
     if( !pRmtParam )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,L"ERROR");
+		DebugLog(DbgInfo,"ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -225,7 +226,7 @@ DWORD Inject
     if( bFlag == FALSE )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,L"ERROR");
+		DebugLog(DbgInfo,"ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -234,7 +235,7 @@ DWORD Inject
     if( bFlag == FALSE )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,L"ERROR");
+		DebugLog(DbgInfo,"ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -251,7 +252,7 @@ DWORD Inject
     if( !hRemoteThread )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,L"ERROR");
+		DebugLog(DbgInfo,"ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -271,8 +272,8 @@ DWORD Inject
     GetExitCodeThread( hRemoteThread, &dwExitCode );
 
 #ifdef Dbg
-	WCHAR szThreadExitCode[256] = {0};
-	wsprintf(szThreadExitCode,L"szThreadExitCode =[%d]",dwExitCode);
+	CHAR szThreadExitCode[256] = {0};
+	sprintf(szThreadExitCode,"szThreadExitCode =[%d]",dwExitCode);
 	DebugLog(DbgInfo,szThreadExitCode);
 #endif
 

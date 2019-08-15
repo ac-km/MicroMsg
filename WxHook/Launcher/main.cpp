@@ -11,7 +11,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//(Launcher.exe exePath [exe Name])
 	CHAR szCommandLine[256] = { 0 };
 	lstrcpy(szCommandLine, lpCmdLine);
-	////lstrcpy(szCommandLine, "C:\\Program Files(x86)\\Tencent\\WeChat\\WeChat.exe");
+	//lstrcpy(szCommandLine, "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe");
 	//lstrcpy(szCommandLine, "E:\\¹¤¾ßÈí¼þ\\httpdebug.exe");
 
 	CHookInit mHook;

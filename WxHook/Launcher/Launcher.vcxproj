@@ -65,11 +65,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Common\DebugLog.cpp" />
+    <ClCompile Include="..\Common\LOG.cpp" />
     <ClCompile Include="HookInit.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\DebugLog.h" />
+    <ClInclude Include="..\Common\LOG.h" />
     <ClInclude Include="HookInit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -43,14 +43,17 @@
     <Filter Include="Dispatch\USER32">
       <UniqueIdentifier>{7fe1f02e-ac88-47ce-ab26-131b54b6b1e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Debug">
-      <UniqueIdentifier>{11fcc5ea-d559-469a-81b9-8cc89e19bc6e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Dispatch\SELF">
       <UniqueIdentifier>{faddec9a-bd12-4185-a7d4-22ce7ee2ddc8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Dispatch\CALLBACK">
       <UniqueIdentifier>{5926a989-2eed-495d-ba2b-249cfab450d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pipe">
+      <UniqueIdentifier>{1ba21d52-ddab-46ea-8a93-70ba0df39cd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{2a4d5bef-8957-4136-adab-ea75d8a2a04b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -342,9 +345,6 @@
     <ClInclude Include="USER32\Dispatch_USER32_UnhookWindowsHookEx.h">
       <Filter>Dispatch\USER32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\DebugLog.h">
-      <Filter>Debug</Filter>
-    </ClInclude>
     <ClInclude Include="SELF\Dispatch_SELF.h">
       <Filter>Dispatch\SELF</Filter>
     </ClInclude>
@@ -354,11 +354,20 @@
     <ClInclude Include="CALLBACK\Dispatch_CALLBACK.h">
       <Filter>Dispatch\CALLBACK</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="SELF\Dispatch_SELF_Login.h">
       <Filter>Dispatch\SELF</Filter>
+    </ClInclude>
+    <ClInclude Include="pipe.h">
+      <Filter>pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\LOG.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\DebugLog.h">
+      <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -644,9 +653,6 @@
     <ClCompile Include="USER32\Dispatch_USER32_UnhookWindowsHookEx.cpp">
       <Filter>Dispatch\USER32</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\DebugLog.cpp">
-      <Filter>Debug</Filter>
-    </ClCompile>
     <ClCompile Include="SELF\Dispatch_SELF.cpp">
       <Filter>Dispatch\SELF</Filter>
     </ClCompile>
@@ -656,11 +662,20 @@
     <ClCompile Include="CALLBACK\Dispatch_CALLBACK.cpp">
       <Filter>Dispatch\CALLBACK</Filter>
     </ClCompile>
-    <ClCompile Include="Common.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="SELF\Dispatch_SELF_Login.cpp">
       <Filter>Dispatch\SELF</Filter>
+    </ClCompile>
+    <ClCompile Include="pipe.cpp">
+      <Filter>pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\LOG.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\DebugLog.cpp">
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
