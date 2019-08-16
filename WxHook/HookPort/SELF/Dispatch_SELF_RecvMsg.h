@@ -6,7 +6,7 @@ typedef VOID(WINAPI * __pfnWxRecvMsg)
 );
 
 extern __pfnWxRecvMsg pfnWxRecvMsg;
+VOID WINAPI OnWxRecvMsg();
 
-VOID
-WINAPI
-OnWxRecvMsg();
+extern __pfnWxRecvMsg pfnWxRecvMsgForStream;
+VOID WINAPI OnWxRecvMsgForStream();

@@ -8,12 +8,8 @@
 #define Dbg
 
 
+void DebugLog(LPCSTR lpOutputString);
 
-//
-//Define
-//
-#define DbgInfo __FILE__,__FUNCTION__,__LINE__
+void DebugLog(LPCSTR lpTag, LPCSTR lpOutputString);
 
- 
-
-void DebugLog(LPCSTR lpFILE, LPCSTR lpFUNCTION, int lpLINE, LPCSTR lpOutputString);
+void DebugLogHex(LPCSTR lpTag, LPCSTR lpOutputString,DWORD lpOutputStringLen);

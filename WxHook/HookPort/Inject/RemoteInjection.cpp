@@ -199,7 +199,7 @@ DWORD Inject
     if( !hProc )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,"ERROR");
+		DebugLog("ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -208,7 +208,7 @@ DWORD Inject
     if( !pfnRmtFunc )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,"ERROR");
+		DebugLog("ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -217,7 +217,7 @@ DWORD Inject
     if( !pRmtParam )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,"ERROR");
+		DebugLog("ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -226,7 +226,7 @@ DWORD Inject
     if( bFlag == FALSE )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,"ERROR");
+		DebugLog("ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -235,7 +235,7 @@ DWORD Inject
     if( bFlag == FALSE )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,"ERROR");
+		DebugLog("ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -252,7 +252,7 @@ DWORD Inject
     if( !hRemoteThread )
     {
 #ifdef Dbg
-		DebugLog(DbgInfo,"ERROR");
+		DebugLog("ERROR");
 #endif
 		goto InjectCleanUp;
     }
@@ -274,7 +274,7 @@ DWORD Inject
 #ifdef Dbg
 	CHAR szThreadExitCode[256] = {0};
 	sprintf(szThreadExitCode,"szThreadExitCode =[%d]",dwExitCode);
-	DebugLog(DbgInfo,szThreadExitCode);
+	DebugLog(szThreadExitCode);
 #endif
 
     CloseHandle( hProc );

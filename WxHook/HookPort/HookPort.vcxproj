@@ -80,8 +80,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\Common.h" />
     <ClInclude Include="..\Common\DebugLog.h" />
-    <ClInclude Include="..\Common\LOG.h" />
+    <ClInclude Include="..\Common\log4z.h" />
     <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32.h" />
     <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.h" />
     <ClInclude Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.h" />
@@ -97,7 +98,6 @@
     <ClInclude Include="CloneAPI\CloneAPI_FLTLIB.h" />
     <ClInclude Include="CloneAPI\CloneAPI_KERNEL32.h" />
     <ClInclude Include="CloneAPI\CloneAPI_SHELL32.h" />
-    <ClInclude Include="Common.h" />
     <ClInclude Include="HookPort.h" />
     <ClInclude Include="Inject\IATModifier.h" />
     <ClInclude Include="Inject\IATProcess.h" />
@@ -185,8 +185,9 @@
     <ClInclude Include="USER32\Dispatch_USER32_UnhookWindowsHookEx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Common\Common.cpp" />
     <ClCompile Include="..\Common\DebugLog.cpp" />
-    <ClCompile Include="..\Common\LOG.cpp" />
+    <ClCompile Include="..\Common\log4z.cpp" />
     <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32.cpp" />
     <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig.cpp" />
     <ClCompile Include="ADVAPI32\Dispatch_ADVAPI32_ChangeServiceConfig2.cpp" />
@@ -210,7 +211,6 @@
     <ClCompile Include="CloneAPI\CloneAPI_SHELL32.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Common.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

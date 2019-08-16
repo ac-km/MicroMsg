@@ -38,4 +38,6 @@ private:
 public:
 	CString strWxPath;
 	CListBox mViewList;
+protected:
+	afx_msg LRESULT OnWndMsg(WPARAM wParam, LPARAM lParam);
 };

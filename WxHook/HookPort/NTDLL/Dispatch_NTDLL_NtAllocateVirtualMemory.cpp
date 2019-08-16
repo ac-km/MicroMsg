@@ -59,7 +59,7 @@ OnNtAllocateVirtualMemory(
 		);
 
 #ifdef Dbg
-	DebugLog(DbgInfo,"Called");
+	DebugLog("Called");
 #endif
 
 	return nRet;

@@ -102,8 +102,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\Common.h" />
     <ClInclude Include="..\Common\DebugLog.h" />
-    <ClInclude Include="..\Common\LOG.h" />
+    <ClInclude Include="..\Common\log4z.h" />
     <ClInclude Include="pipe.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -112,10 +113,13 @@
     <ClInclude Include="WxHookDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Common\Common.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\Common\DebugLog.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\Common\LOG.cpp">
+    <ClCompile Include="..\Common\log4z.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="pipe.cpp" />

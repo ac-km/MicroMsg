@@ -50,11 +50,18 @@ int Dispatch_SELF_Start(HANDLE hWeChatWin)
 	);
 
 	//WxRecvMsg
+	//InlineHookFunc(
+	//	(__pfnWxRecvMsg)((DWORD)hWeChatWin + 0x3114DB),
+	//	OnWxRecvMsg,
+	//	(void **)&pfnWxRecvMsg
+	//	);
+
+	//WxRecvMsg
 	InlineHookFunc(
-		(__pfnWxRecvMsg)((DWORD)hWeChatWin + 0x3114DB),
-		OnWxRecvMsg,
-		(void **)&pfnWxRecvMsg
-		);
+		(__pfnWxRecvMsg)((DWORD)hWeChatWin + 0x30FBE0),
+		OnWxRecvMsgForStream,
+		(void **)&pfnWxRecvMsgForStream
+	);
 	
 	return 1;
 }

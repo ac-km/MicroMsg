@@ -106,7 +106,7 @@ OnNtOpenThread(
 					"OnNtOpenThread dwProcessId=[%d]",
 					dwProcessId
 					);
-				DebugLog(DbgInfo,szDebugString);
+				DebugLog(szDebugString);
 #endif
 				if( IsProcessPatched(dwProcessId,FALSE) == FALSE )//Outside SandBox
 				{

@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);WIN32</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -65,13 +66,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Common\DebugLog.cpp" />
-    <ClCompile Include="..\Common\LOG.cpp" />
+    <ClCompile Include="..\Common\log4z.cpp" />
     <ClCompile Include="HookInit.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\DebugLog.h" />
-    <ClInclude Include="..\Common\LOG.h" />
+    <ClInclude Include="..\Common\log4z.h" />
     <ClInclude Include="HookInit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

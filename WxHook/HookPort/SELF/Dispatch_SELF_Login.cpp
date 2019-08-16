@@ -6,7 +6,7 @@
 #include "../../Common/DebugLog.h"
 #include"../HookPort.h"
 #include "../Inject/RemoteInjection.h"
-#include"../Common.h"
+#include"../../Common/Common.h"
 #include"../pipe.h"
 
 
@@ -27,7 +27,7 @@ WINAPI
 OnWxLoginForHeadUrl()
 {
 #ifdef Dbg
-	DebugLog(DbgInfo, "OnWxLoginForHeadUrl...");
+	DebugLog("HookCallBack", "OnWxLoginForHeadUrl...");
 #endif
 
 	DWORD* saveEBP = 0;
@@ -43,9 +43,9 @@ OnWxLoginForHeadUrl()
 	{
 		std::string r=MyWideCharToMultiByte((BYTE*)wxBuf, len);
 #ifdef Dbg
-		DebugLog(DbgInfo, (char*)r.c_str());
+		DebugLog("HeadUrl", (char*)r.c_str());
 #endif
-		pipe_start_thread((LPVOID)r.c_str());
+		pipe_start_thread(r);
 	}
 	__asm
 	{
@@ -60,7 +60,7 @@ WINAPI
 OnWxLoginForWxid()
 {
 #ifdef Dbg
-	DebugLog(DbgInfo, "OnWxLoginForWxid...");
+	DebugLog("HookCallBack", "OnWxLoginForWxid...");
 #endif
 
 	DWORD* saveEBP = 0;
@@ -76,9 +76,11 @@ OnWxLoginForWxid()
 	if (len> 0)
 	{
 #ifdef Dbg
-		DebugLog(DbgInfo, wxBuf);
+		DebugLog("wxid:", wxBuf);
 #endif
-		pipe_start_thread((LPVOID)wxBuf);
+		std::string msg = "";
+		msg.append(wxBuf, len);
+		pipe_start_thread(msg);
 	}
 	//È¡Î¢ÐÅºÅ
 	wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP + 0x70);
@@ -86,9 +88,11 @@ OnWxLoginForWxid()
 	if (len> 0)
 	{
 #ifdef Dbg
-		DebugLog(DbgInfo, wxBuf);
+		DebugLog("weixin", wxBuf);
 #endif
-		pipe_start_thread((LPVOID)wxBuf);
+		std::string msg = "";
+		msg.append(wxBuf, len);
+		pipe_start_thread(msg);
 	}
 
 	__asm

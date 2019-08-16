@@ -360,13 +360,13 @@
     <ClInclude Include="pipe.h">
       <Filter>pipe</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\LOG.h">
-      <Filter>common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\DebugLog.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\log4z.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Common.h">
       <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
@@ -668,13 +668,13 @@
     <ClCompile Include="pipe.cpp">
       <Filter>pipe</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\LOG.cpp">
-      <Filter>common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
-      <Filter>common</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\DebugLog.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\log4z.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Common.cpp">
       <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,6 +7,7 @@
 #include "WxHookDlg.h"
 #include "afxdialogex.h"
 #include"../Common/Config.h"
+#include"../Common/Common.h"
 #include"pipe.h"
 
 #ifdef _DEBUG
@@ -69,6 +70,7 @@ BEGIN_MESSAGE_MAP(CWxHookDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CWxHookDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CWxHookDlg::OnBnClickedButton2)
+	ON_MESSAGE(WM_WND_MSG, &CWxHookDlg::OnWndMsg)
 END_MESSAGE_MAP()
 
 
@@ -251,7 +253,7 @@ void CWxHookDlg::OnBnClickedButton1()
 void CWxHookDlg::OnBnClickedButton2()
 {
 	// TODO:  在此添加控件通知处理程序代码
-	mViewList.AddString("11111111111111111111");
+	
 }
 
 void CWxHookDlg::start_pipe()
@@ -261,7 +263,7 @@ void CWxHookDlg::start_pipe()
 		NULL,//default security attributes
 		0,//use default stack size
 		pipe_server,//thread function
-		&mViewList.m_hWnd,//argument to thread function
+		&m_hWnd,//argument to thread function
 		0,//use default creation flags
 		&dwThreadId);//returns the thread identifier
 						//Check there turn value for success.
@@ -270,4 +272,20 @@ void CWxHookDlg::start_pipe()
 		return;
 	}
 
+}
+
+afx_msg LRESULT CWxHookDlg::OnWndMsg(WPARAM wParam, LPARAM lParam)
+{
+	DWORD code = wParam;
+	switch (code)
+	{
+		case 1:
+		{
+			mViewList.AddString("11111111111111111111");
+		}break;
+		default:
+			mViewList.AddString("11111111111111111111");
+			break;
+	}
+	return 0;
 }

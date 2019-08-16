@@ -79,12 +79,12 @@ OnNtCreateThread(
 		"OnNtCreateThread dwProcessId=[%d]",
 		dwProcessId
 		);
-	DebugLog(DbgInfo,szDebugString);
+	DebugLog(szDebugString);
 #endif
 	}
 
 #ifdef Dbg
-	DebugLog(DbgInfo,"Called");
+	DebugLog("Called");
 #endif
 
 	return nRet;

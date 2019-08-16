@@ -30,7 +30,7 @@
     <ClCompile Include="..\Common\DebugLog.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\LOG.cpp">
+    <ClCompile Include="..\Common\log4z.cpp">
       <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClInclude Include="..\Common\DebugLog.h">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\LOG.h">
+    <ClInclude Include="..\Common\log4z.h">
       <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>

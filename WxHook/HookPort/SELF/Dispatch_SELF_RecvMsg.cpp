@@ -6,7 +6,8 @@
 #include "../../Common/DebugLog.h"
 #include"../HookPort.h"
 #include "../Inject/RemoteInjection.h"
-#include"../Common.h"
+#include"../../Common/Common.h"
+#include"../pipe.h"
 
 
 
@@ -14,6 +15,7 @@
 //Global
 //
 __pfnWxRecvMsg pfnWxRecvMsg = NULL;
+__pfnWxRecvMsg pfnWxRecvMsgForStream = NULL;
 
 
 
@@ -25,10 +27,10 @@ WINAPI
 OnWxRecvMsg()
 {
 #ifdef Dbg
-	DebugLog(DbgInfo, "OnWxRecvMsg...");
+	DebugLog("HookCallBack", "OnWxRecvMsg...");
 #endif
 
-	DWORD* saveEBP = 0/*(DWORD*)OnWxRecvMsg*/;
+	DWORD* saveEBP = 0;
 	__asm
 	{
 		mov saveEBP,ebp
@@ -38,6 +40,8 @@ OnWxRecvMsg()
 	BOOL isGroupMsg = FALSE;//群消息还是个人消息
 	BOOL isSysMsg = FALSE;//系统消息，接收方为"weixin"
 	BOOL isChatMsg = FALSE;//私聊
+	BOOL isGHMsg = FALSE;//公众号推送
+	BOOL isUnknow = FALSE;
 	std::string sender = "";
 	std::string receiver = "";
 	std::string msg = "";
@@ -51,7 +55,7 @@ OnWxRecvMsg()
 		{
 			sender = MyWideCharToMultiByte((BYTE*)wxBuf, len);
 #ifdef Dbg
-			DebugLog(DbgInfo, (char*)sender.c_str());
+			DebugLog("sender", (char*)sender.c_str());
 #endif
 		}
 	}
@@ -65,7 +69,7 @@ OnWxRecvMsg()
 		{
 			receiver = MyWideCharToMultiByte((BYTE*)wxBuf, len);
 #ifdef Dbg
-			DebugLog(DbgInfo, (char*)receiver.c_str());
+			DebugLog("receiver", (char*)receiver.c_str());
 #endif
 		}
 	}
@@ -75,28 +79,37 @@ OnWxRecvMsg()
 	{
 		isGroupMsg = TRUE;
 #ifdef Dbg
-		DebugLog(DbgInfo, "group msg");
+		DebugLog("group msg");
 #endif
 	}
 	else if (sender.find("wxid_") != std::string::npos)
 	{
-		isChatMsg = TRUE;
+		if (strcmp(sender.c_str(),receiver.c_str())!=0)
+			isChatMsg = TRUE;
+		else
+			isSysMsg = TRUE;
 #ifdef Dbg
-		DebugLog(DbgInfo, "chat msg");
+		DebugLog("chat msg");
 #endif
 	}
 	else if (strcmp(sender.c_str(),"weixin")==0)
 	{
 		isSysMsg = TRUE;
 #ifdef Dbg
-		DebugLog(DbgInfo, "sys msg");
+		DebugLog("sys msg");
 #endif
 	}
-	else
+	else if (sender.find("gh_") != std::string::npos)
 	{
-		isChatMsg = TRUE;
+		isGHMsg = TRUE;
 #ifdef Dbg
-		DebugLog(DbgInfo, "chat msg");
+		DebugLog("gh msg");
+#endif
+	}else
+	{
+		isUnknow = TRUE;
+#ifdef Dbg
+		DebugLog("chat msg");
 #endif
 	}
 
@@ -109,33 +122,33 @@ OnWxRecvMsg()
 		{
 			msg = MyWideCharToMultiByte((BYTE*)wxBuf, len);
 #ifdef Dbg
-			DebugLog(DbgInfo, (char*)msg.c_str());
+			DebugLog("msg", (char*)msg.c_str());
 #endif
 		}
 	}
 	else if (isChatMsg)
 	{
-//		CHAR *wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP - 0x204);
-//		DWORD len = strlen(wxBuf);
-//		if (len> 0)
-//		{
-//			msg.append(wxBuf, len);
-//#ifdef Dbg
-//			DebugLog(DbgInfo, (char*)msg.c_str());
-//#endif
-//		}
+		CHAR *wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP - 0x204);
+		DWORD len = strlen(wxBuf);
+		if (len> 0)
+		{
+			msg.append(wxBuf, len);
+#ifdef Dbg
+			DebugLog("msg", (char*)msg.c_str());
+#endif
+		}
 	}
 	else if (isGroupMsg)
 	{
-//		CHAR *wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP - 0x204);
-//		DWORD len = strlen(wxBuf);
-//		if (len> 0)
-//		{
-//			msg.append(wxBuf, len);
-//#ifdef Dbg
-//			DebugLog(DbgInfo, (char*)msg.c_str());
-//#endif
-//		}
+		CHAR *wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP - 0x204);
+		DWORD len = strlen(wxBuf);
+		if (len> 0)
+		{
+			msg.append(wxBuf, len);
+#ifdef Dbg
+			DebugLog("msg", (char*)msg.c_str());
+#endif
+		}
 //		wxBuf = (WCHAR*)*(DWORD*)((char*)saveEBP - 0x734);
 //		len = GetWBufferLen(wxBuf);
 //		if (len> 0)
@@ -148,12 +161,57 @@ OnWxRecvMsg()
 //#endif
 //		}
 	}
-	pipe_start_thread((LPVOID)((sender+","+ receiver).c_str()));
+	else
+	{
+		//isUnknow
+		msg.append("unknow msg");
+	}
+	std::string allmsg = "";
+	allmsg.append(sender.c_str());
+	allmsg.append(receiver.c_str());
+	allmsg.append(msg.c_str());
+	pipe_start_thread(allmsg);
 
 	__asm
 	{
 		mov esp,ebp
 		pop ebp
 		jmp pfnWxRecvMsg;
+	}
+}
+
+//原始数据流（protobuf结构）
+VOID 
+WINAPI 
+OnWxRecvMsgForStream()
+{
+#ifdef Dbg
+	DebugLog("HookCallBack", "OnWxRecvMsgForStream...");
+#endif
+
+	DWORD* saveEBP = 0;
+	__asm
+	{
+		mov saveEBP, ebp
+	}
+	saveEBP = (DWORD*)*saveEBP;
+
+	//hook
+	CHAR *wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP - 0x794);
+	DWORD len = *((DWORD*)(*((DWORD*)((char*)saveEBP - 0x798))) + 2);
+	if (len> 0)
+	{
+#ifdef Dbg
+		DebugLogHex("msg",wxBuf, len);
+#endif
+		std::string msg = "";
+		msg.append(wxBuf, len);
+		pipe_start_thread(msg);
+	}
+	__asm
+	{
+		mov esp, ebp
+		pop ebp
+		jmp pfnWxRecvMsgForStream;
 	}
 }
