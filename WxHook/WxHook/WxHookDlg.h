@@ -4,6 +4,9 @@
 
 #pragma once
 #include "afxwin.h"
+#include "MyListCtrl.h"
+#include"ParseProto.h"
+#include<vector>
 
 // CWxHookDlg ¶Ô»°¿ò
 class CWxHookDlg : public CDialogEx
@@ -28,16 +31,20 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg LRESULT OnWndMsg(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
 private:
-	CString GetWxPath();
-	void start_pipe();
-public:
 	CString strWxPath;
 	CListBox mViewList;
-protected:
-	afx_msg LRESULT OnWndMsg(WPARAM wParam, LPARAM lParam);
+	MyListCtrl mListView;
+	ParseProto mParseProto;
+	std::vector<std::string> mMessageList;
+private:
+	CString GetWxPath();
+	void start_pipe();
+	void LoadProto(CString &mProtoFile);
+	std::string ParseData(std::string &message_name,unsigned char *data, unsigned int len);
 };

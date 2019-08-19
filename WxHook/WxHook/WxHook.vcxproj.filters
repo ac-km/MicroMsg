@@ -19,6 +19,9 @@
     <Filter Include="common">
       <UniqueIdentifier>{b6ab73c9-b5b7-4210-ae6c-ea1d730e907a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="protobuf">
+      <UniqueIdentifier>{e2a80901-c741-490a-b9b7-7bb985f51871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -51,6 +54,15 @@
     <ClInclude Include="..\Common\Common.h">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="MyListCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseProto.h">
+      <Filter>protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="Lock.h">
+      <Filter>common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WxHook.cpp">
@@ -73,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="..\Common\Common.cpp">
       <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="MyListCtrl.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseProto.cpp">
+      <Filter>protobuf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

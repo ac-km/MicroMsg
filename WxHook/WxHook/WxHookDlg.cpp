@@ -9,6 +9,7 @@
 #include"../Common/Config.h"
 #include"../Common/Common.h"
 #include"pipe.h"
+#include"Lock.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -62,6 +63,7 @@ void CWxHookDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Text(pDX, IDC_MFCEDITBROWSE1, strWxPath);
 	DDX_Control(pDX, IDC_LIST1, mViewList);
+	DDX_Control(pDX, IDC_LIST2, mListView);
 }
 
 BEGIN_MESSAGE_MAP(CWxHookDlg, CDialogEx)
@@ -107,10 +109,12 @@ BOOL CWxHookDlg::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化代码c
 	strWxPath = "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe";
-	//strWxPath = "E:\\工具软件\\xsearch_CHS.exe";
+
+	mListView.Clear();
+	char  column[][MAX_HEADLENGTH] = { "序号","发送者","消息内容" };
+	mListView.SetHeaders(column, sizeof(column) / sizeof(*column));
 
 	UpdateData(FALSE);
-
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -253,7 +257,10 @@ void CWxHookDlg::OnBnClickedButton1()
 void CWxHookDlg::OnBnClickedButton2()
 {
 	// TODO:  在此添加控件通知处理程序代码
-	
+	unsigned char buffer[] = {
+		0x08,0x02,0x12,0x27,0x08,0x01,0x10,0xCB,0xB1,0xB0,0xBD,0x03,0x18,0x04,0x22,0x1B,0x08,0x17,0x12,0x17,0x0A,0x13,0x77,0x78,0x69,0x64,0x5F,0x76,0x34,0x78,0x33,0x74,0x76,0x36,0x70,0x68,0x63,0x77,0x69,0x32,0x31,0x10,0x07,0x12,0x18,0x08,0x03,0x10,0xCB,0xB1,0xB0,0xBD,0x03,0x18,0x05,0x22,0x0C,0x08,0x08,0x12,0x08,0x08,0x04,0x12,0x04,0x05,0x00,0x00,0x00,0x18,0x06,
+	};
+	mParseProto.PrintDebugString(buffer, sizeof(buffer));
 }
 
 void CWxHookDlg::start_pipe()
@@ -266,7 +273,8 @@ void CWxHookDlg::start_pipe()
 		&m_hWnd,//argument to thread function
 		0,//use default creation flags
 		&dwThreadId);//returns the thread identifier
-						//Check there turn value for success.
+	
+	//Check there turn value for success.
 	if (dwThreadId == NULL)
 	{
 		return;
@@ -276,16 +284,65 @@ void CWxHookDlg::start_pipe()
 
 afx_msg LRESULT CWxHookDlg::OnWndMsg(WPARAM wParam, LPARAM lParam)
 {
-	DWORD code = wParam;
-	switch (code)
 	{
+		AutoLock auto_lock;
+		DWORD code = wParam;
+		switch (code)
+		{
 		case 1:
 		{
-			mViewList.AddString("11111111111111111111");
+			unsigned char *data = (unsigned char *)lParam + 4;
+			unsigned int len = htonlx(*(unsigned int*)lParam);
+			std::string ret=mParseProto.PrintDebugString(data,len-4);
+
+			//CString mProtoFile = "proto\\MicroMsg01.proto";
+			//LoadProto(mProtoFile);
+			//std::string msg_name = "";
+			//std::string ret=ParseData(msg_name, data, len);
+			mViewList.AddString(ret.c_str());
 		}break;
 		default:
 			mViewList.AddString("11111111111111111111");
 			break;
+		}
+
 	}
+	Sleep(1);
 	return 0;
+}
+
+void CWxHookDlg::LoadProto(CString &mProtoFile)
+{
+	//加载
+	mMessageList.clear();
+	unsigned int len1 = mProtoFile.GetLength();//proto文件路径长度
+	if (len1)
+	{
+		std::string str = mProtoFile.GetString();
+		mParseProto.LoadProtoFromFile(str);
+		std::vector<std::string> Messages = mParseProto.GetMessageList();
+		for (int i = 0; i < Messages.size(); i++)
+		{
+			mMessageList.push_back(Messages[i]);
+		}
+	}
+}
+
+std::string CWxHookDlg::ParseData(std::string &message_name,unsigned char *data, unsigned int len)
+{
+	std::string strResult = "";
+	//动态解析
+	if (len)
+	{
+		CString strMessage = "";
+		strResult = mParseProto.PrintDataFile(message_name, data, len);
+		if (strResult == "")
+		{
+			strResult = "解析出错...";
+		}
+		else
+		{
+		}
+	}
+	return strResult;
 }
