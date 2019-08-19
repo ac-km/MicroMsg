@@ -1,0 +1,6 @@
+package MicroMsg;
+
+message PbData{
+optional uint32 length	=1;
+optional bytes	data	=2;
+}

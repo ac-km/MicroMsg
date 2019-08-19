@@ -1,0 +1,30 @@
+package MicroMsg;
+
+message wxid{
+optional string	strWxid	=1;
+}
+
+message Content{
+optional string	strText	=1;
+}
+
+message wxFile{
+optional uint64	length	=1;
+optional string	data	=2;
+}
+
+message MsgDetail{
+optional uint32	code01	= 1;
+optional wxid	fromuser= 2;
+optional wxid	touser	= 3;
+optional uint32	code02	= 4;
+optional Content text	= 5;
+optional uint32	code03	= 6;
+optional uint32	code04	= 7;
+optional wxFile	file = 8;
+optional uint32	time	= 9;
+optional string	groupinfo= 10;
+optional string	pushcontent= 11;
+optional uint64	msgid	= 12;
+optional uint32	code05	= 13;
+}

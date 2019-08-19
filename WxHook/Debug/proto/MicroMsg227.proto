@@ -1,0 +1,8 @@
+import "WxGroupMember.proto";
+package MicroMsg;
+
+message MicroMsg227{
+optional string		roomid	=2;
+optional uint32		code02	=3;
+optional WxGroupMember	groupmember	=4;
+}

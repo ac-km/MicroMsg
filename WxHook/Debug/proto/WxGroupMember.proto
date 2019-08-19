@@ -1,0 +1,16 @@
+package MicroMsg;
+
+message WxMember{
+optional string		account	=1;
+optional string  	nickname=2;
+optional string  	headurl1=4;
+optional string  	headurl2=5;
+optional uint32		code01	=6;
+optional string		inviteuser=7;
+optional uint32		code02	=8;
+}
+
+message WxGroupMember{
+optional uint32		count	=1;
+repeated WxMember  members	=2;
+}

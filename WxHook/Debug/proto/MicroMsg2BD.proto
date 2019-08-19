@@ -1,0 +1,34 @@
+package MicroMsg;
+
+message ResultString{
+required string retstr=1;
+}
+
+message MsgResult{
+required uint64  code = 1;
+required ResultString result=2;
+}
+
+message RespTokens{
+required uint32	uin= 1;
+optional string	mail=20;
+optional uint32	logintime=22;
+}
+
+message UserInfo{
+optional string wxid		=1;
+optional string	nickname	=2;
+optional uint32 qq		=3;
+optional string alias		=6;
+optional string deviceinfoconfig=11;
+optional string type   		=13;
+optional string strwx 		=14;
+optional string	mail		=16;
+}
+
+message MicroMsg2BD{
+required MsgResult	ret	= 1;
+required uint32		code01	= 2;
+required RespTokens	tokens 	= 3;
+required UserInfo	user 	= 4;
+}

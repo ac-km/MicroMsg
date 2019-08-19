@@ -1,0 +1,41 @@
+import "WxGroupMember.proto";
+package MicroMsg;
+
+message WxRoomId{
+optional string  strid	=1;
+}
+
+message WxRoomNickName{
+optional string  strnickname	=1;
+}
+
+message WxRoomPY{
+optional string  strPY	=1;
+}
+
+message WxRoomPinYin{
+optional string  strPinYin	=1;
+}
+
+message WxRoomInfo{
+optional WxRoomId  roomid	=1;
+optional WxRoomNickName  roomnickname	=2;
+optional WxRoomPY	roompy=3;
+optional WxRoomPinYin	roompinyin=4;
+optional uint32		code01	=7;
+optional uint32		code02	=8;
+optional uint32		code03	=9;
+optional uint32		code04	=17;
+optional string		ownerwxid	=31;
+optional string		headimgurl	=40;
+optional string		strV1	=45;
+optional uint32		code05	=53;
+optional uint32		code06	=55;
+optional uint32		code07	=56;
+optional WxGroupMember	groupmember	=57;
+}
+
+message MicroMsgB6{
+optional uint32		code01	=2;
+optional WxRoomInfo	room	=3;
+}

@@ -1,0 +1,21 @@
+import "PbData.proto";
+package MicroMsg;
+
+message InData{
+optional uint32		code	=1;
+optional PbData		pbdata	=2;
+}
+
+message WxData{
+optional uint32  code 		=1;
+optional InData  indata		=2;
+}
+
+message MicroMsg01{
+optional uint32		code01	=1;
+optional WxData		data	=2;
+optional uint32		code02	=3;
+optional uint32		code03	=5;
+optional uint32		code04	=6;
+optional uint32		time	=7;
+}
