@@ -42,6 +42,7 @@ private:
 	MyListCtrl mListView;
 	ParseProto mParseProto;
 	std::vector<std::string> mMessageList;
+	CWnd *pHexView;
 private:
 	CString GetWxPath();
 	void start_pipe();

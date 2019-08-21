@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClInclude Include="..\Common\Common.h" />
     <ClInclude Include="..\Common\DebugLog.h" />
+    <ClInclude Include="..\Common\HexControlInclude.h" />
     <ClInclude Include="..\Common\log4z.h" />
     <ClInclude Include="Lock.h" />
     <ClInclude Include="MyListCtrl.h" />

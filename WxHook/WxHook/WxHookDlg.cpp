@@ -107,12 +107,18 @@ BOOL CWxHookDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
-	// TODO:  在此添加额外的初始化代码c
+	// 初始化程序路径
 	strWxPath = "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe";
 
-	mListView.Clear();
+	//listcontrol控件初始化
 	char  column[][MAX_HEADLENGTH] = { "序号","消息类型","消息内容" };
 	mListView.SetHeaders(column, sizeof(column) / sizeof(*column));
+	mListView.MoveWindow(10, 75, 235, 265,TRUE);
+
+	//hexview控件初始化
+	pHexView = HexEditControl::ShowHexControl(this->m_hWnd, 250, 75, 460, 265);
+	BYTE buffer[] = { 0x1,0x2 };
+	HexEditControl::SetData(pHexView, buffer, sizeof(buffer));
 
 	UpdateData(FALSE);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE

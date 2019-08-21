@@ -63,6 +63,9 @@
     <ClInclude Include="Lock.h">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\HexControlInclude.h">
+      <Filter>common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WxHook.cpp">
