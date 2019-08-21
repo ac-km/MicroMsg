@@ -111,7 +111,7 @@ BOOL CWxHookDlg::OnInitDialog()
 	strWxPath = "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe";
 
 	mListView.Clear();
-	char  column[][MAX_HEADLENGTH] = { "序号","发送者","消息内容" };
+	char  column[][MAX_HEADLENGTH] = { "序号","消息类型","消息内容" };
 	mListView.SetHeaders(column, sizeof(column) / sizeof(*column));
 
 	UpdateData(FALSE);
