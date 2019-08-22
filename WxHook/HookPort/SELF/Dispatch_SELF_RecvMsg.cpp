@@ -170,7 +170,7 @@ OnWxRecvMsg()
 	allmsg.append(sender.c_str());
 	allmsg.append(receiver.c_str());
 	allmsg.append(msg.c_str());
-	pipe_start_thread(allmsg);
+	pipe_start_thread(MSG_CUSTOM,MSG_00,allmsg);
 
 	__asm
 	{
@@ -206,7 +206,7 @@ OnWxRecvMsgForStream()
 #endif
 		std::string msg = "";
 		msg.append(wxBuf, len);
-		pipe_start_thread(msg);
+		pipe_start_thread(MSG_CUSTOMFF,MSG_01,msg);
 	}
 	__asm
 	{

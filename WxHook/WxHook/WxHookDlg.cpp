@@ -54,6 +54,7 @@ END_MESSAGE_MAP()
 CWxHookDlg::CWxHookDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CWxHookDlg::IDD, pParent)
 	, strWxPath(_T(""))
+	, mEditValue(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -62,8 +63,8 @@ void CWxHookDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Text(pDX, IDC_MFCEDITBROWSE1, strWxPath);
-	DDX_Control(pDX, IDC_LIST1, mViewList);
 	DDX_Control(pDX, IDC_LIST2, mListView);
+	DDX_Text(pDX, IDC_EDIT1, mEditValue);
 }
 
 BEGIN_MESSAGE_MAP(CWxHookDlg, CDialogEx)
@@ -108,17 +109,19 @@ BOOL CWxHookDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// 初始化程序路径
-	strWxPath = "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe";
+	//strWxPath = "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe";
+	GetWxPath();
 
 	//listcontrol控件初始化
 	char  column[][MAX_HEADLENGTH] = { "序号","消息类型","消息内容" };
 	mListView.SetHeaders(column, sizeof(column) / sizeof(*column));
-	mListView.MoveWindow(10, 75, 235, 265,TRUE);
+	mListView.MoveWindow(10, 75, 200, 265,TRUE);
 
 	//hexview控件初始化
-	pHexView = HexEditControl::ShowHexControl(this->m_hWnd, 250, 75, 460, 265);
-	BYTE buffer[] = { 0x1,0x2 };
-	HexEditControl::SetData(pHexView, buffer, sizeof(buffer));
+	pHexView = HexEditControl::ShowHexControl(this->m_hWnd, 215, 75, 495, 265);
+
+	//启动管道
+	start_pipe();
 
 	UpdateData(FALSE);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -174,26 +177,39 @@ HCURSOR CWxHookDlg::OnQueryDragIcon()
 }
 
 //获取微信目录
-CString CWxHookDlg::GetWxPath()
+void CWxHookDlg::GetWxPath()
 {
-	//HKEY hKey;
-	//TCHAR szProductType[MY_BUFSIZE];
-	//memset(szProductType, 0, sizeof(szProductType));
-	//DWORD dwBufLen = MY_BUFSIZE;
-	//LONG lRet;
+	HKEY hKey;
+	TCHAR szProductType[MAX_PATH];
+	memset(szProductType, 0, sizeof(szProductType));
+	DWORD dwBufLen = MAX_PATH;
+	LONG lRet;
 
-	//// 下面是打开注册表, 只有打开后才能做其他操作 
-	//lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE,  // 要打开的根键 
-	//	TEXT("SOFTWARE\\TENCENT\\QQ2009"), // 要打开的子子键 
-	//	0,        // 这个一定要为0 
-	//	KEY_QUERY_VALUE,  //  指定打开方式,此为读 
-	//	&hKey);    // 用来返回句柄 
+	// 下面是打开注册表, 只有打开后才能做其他操作 
+	lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE,  // 要打开的根键 
+		TEXT("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\WeChat"), // 要打开的子子键 
+		0,        // 这个一定要为0 
+		KEY_QUERY_VALUE,  //  指定打开方式,此为读 
+		&hKey);    // 用来返回句柄 
 
-	//if (lRet != ERROR_SUCCESS)   // 判断是否打开成功 
-	//	return 1;
-	UpdateData(TRUE);
-	return strWxPath;
+	if (lRet != ERROR_SUCCESS)   // 判断是否打开成功 
+		return;
+
+	lRet = RegQueryValueEx(hKey,  // 打开注册表时返回的句柄 
+		TEXT("InstallLocation"),  //要查询的名称,qq安装目录记录在这个保存 
+		NULL,   // 一定为NULL或者0 
+		NULL,
+		(LPBYTE)szProductType, // 我们要的东西放在这里 
+		&dwBufLen);
+	if (lRet != ERROR_SUCCESS)  // 判断是否查询成功 
+		return;
+
+	char *exe = "\\WeChat.exe";
+	memcpy(szProductType + strlen(szProductType), exe, strlen(exe)+1);
+	strWxPath = szProductType;
+	UpdateData(FALSE);
 }
+
 //启动微信
 void CWxHookDlg::OnBnClickedButton1()
 {
@@ -220,7 +236,7 @@ void CWxHookDlg::OnBnClickedButton1()
 	wsprintf(
 		szCommandLine,
 		"%s",
-		GetWxPath()
+		strWxPath
 		);
 	//判断szCommandLine是否有空格
 	CString szDest = szCommandLine;
@@ -250,7 +266,7 @@ void CWxHookDlg::OnBnClickedButton1()
 		CloseHandle(ProcessInfo.hProcess);
 
 		bIsLauncherCalled = TRUE;
-		start_pipe();
+		//start_pipe();
 	}
 	else
 	{
@@ -293,25 +309,107 @@ afx_msg LRESULT CWxHookDlg::OnWndMsg(WPARAM wParam, LPARAM lParam)
 	{
 		AutoLock auto_lock;
 		DWORD code = wParam;
+		unsigned char *p = (unsigned char*)lParam;
 		switch (code)
 		{
 		case 1:
 		{
-			unsigned char *data = (unsigned char *)lParam + 4;
-			unsigned int len = htonlx(*(unsigned int*)lParam);
-			std::string ret=mParseProto.PrintDebugString(data,len-4);
+			DWORD custom_type;
+			DWORD msg_type;
+			std::string out;
+			if (syncunpack(p,custom_type, msg_type,out))
+			{
+				if (out.size() > 0)
+				{
+					switch (custom_type)
+					{
+					case MSG_CUSTOM:
+					case MSG_CUSTOM01:
+					case MSG_CUSTOM02:
+					case MSG_CUSTOM03:
+					{
+						int i = items.size();
+						ViewItem item;
+						item.index = i + 1;
+						item.custom_type = custom_type;
+						item.msg_type = msg_type;
+						item.data = out;
+						items.push_back(item);
 
-			//CString mProtoFile = "proto\\MicroMsg01.proto";
-			//LoadProto(mProtoFile);
-			//std::string msg_name = "";
-			//std::string ret=ParseData(msg_name, data, len);
-			mViewList.AddString(ret.c_str());
+						CString strFormat;
+						strFormat.Format("%d", item.index);
+						mListView.InsertItem(i, strFormat);
+						strFormat.Format("%s", "custom");
+						mListView.SetItemText(i, 1, strFormat);
+						strFormat.Format("%s", item.data.c_str());
+						mListView.SetItemText(i, 2, strFormat);
+						mListView.SetItemData(i, (DWORD_PTR)&items.back());
+					}break;
+					case MSG_CUSTOMFF:
+					{
+						switch (msg_type)
+						{
+						case MSG_01:
+						//{
+						//	CString mProtoFile = "proto\\MicroMsg01.proto";
+						//	LoadProto(mProtoFile);
+						//	std::string msg_name = "";
+						//	std::string ret=ParseData(msg_name, (unsigned char*)out.c_str(), out.size());
+						//	mViewList.AddString(ret.c_str());
+						//}break;
+						default:
+						{
+							int i = items.size();
+							ViewItem item;
+							item.index = i + 1;
+							item.custom_type = custom_type;
+							item.msg_type = msg_type;
+							item.data = out;
+							items.push_back(item);
+							
+							CString strFormat;
+							strFormat.Format("%d", item.index);
+							mListView.InsertItem(i, strFormat);
+							strFormat.Format("%s", "proto");
+							mListView.SetItemText(i, 1, strFormat);
+							mListView.SetItemText(i, 2, "...");
+							mListView.SetItemData(i, (DWORD_PTR)&items.back());
+						}break;
+						}
+					}break;
+					default:
+						return false;
+						break;
+					}
+				}
+			}
+		}break;
+		case 2:
+		{
+			int index = lParam;
+			PViewItem p=(PViewItem)(mListView.GetItemData(index));
+			HexEditControl::SetData(pHexView, (unsigned char*)p->data.c_str(), p->data.size());
+			UpdateData(TRUE);
+			//protobuf结构数据转换
+			if (p->custom_type == MSG_CUSTOMFF)
+			{
+				//原始protobuf流
+				std::string ret = mParseProto.PrintDebugString((unsigned char*)p->data.c_str(), p->data.size());
+				mEditValue=(ret.c_str());
+			}
+			else
+			{
+				mEditValue=(p->data.c_str());
+			}
+			mEditValue.Replace("\n", "\r\n");
+			UpdateData(FALSE);
 		}break;
 		default:
-			mViewList.AddString("11111111111111111111");
+			UpdateData(TRUE);
+			mEditValue=("ERROR\n");
+			UpdateData(FALSE);
 			break;
 		}
-
 	}
 	Sleep(1);
 	return 0;

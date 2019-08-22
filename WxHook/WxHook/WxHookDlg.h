@@ -7,6 +7,8 @@
 #include "MyListCtrl.h"
 #include"ParseProto.h"
 #include<vector>
+#include<list>
+#include"../Common/Common.h"
 
 // CWxHookDlg ¶Ô»°¿ò
 class CWxHookDlg : public CDialogEx
@@ -38,13 +40,14 @@ public:
 	afx_msg void OnBnClickedButton2();
 private:
 	CString strWxPath;
-	CListBox mViewList;
 	MyListCtrl mListView;
 	ParseProto mParseProto;
 	std::vector<std::string> mMessageList;
 	CWnd *pHexView;
+	std::list<ViewItem> items;
+	CString mEditValue;
 private:
-	CString GetWxPath();
+	void GetWxPath();
 	void start_pipe();
 	void LoadProto(CString &mProtoFile);
 	std::string ParseData(std::string &message_name,unsigned char *data, unsigned int len);

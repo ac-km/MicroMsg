@@ -106,25 +106,14 @@ DWORD WINAPI pipe_client(LPVOID lpParam)
 }
 
 
-void pipe_start_thread(std::string &msg)
+void pipe_start_thread(DWORD custom_type,DWORD code,std::string &msg)
 {
 	//´©¼þ
 	DWORD dwThreadId = 0;
-	char *p = 0;
-	if (msg.size())
+	unsigned char *p = 0;
+	unsigned int len = 0;
+	if (syncpack(custom_type, code, msg, &p, &len))
 	{
-		DWORD len = msg.size() + 4;
-		char c1 = (len & 0xFF000000) >> 24;
-		char c2 = (len & 0x00FF0000) >> 16;
-		char c3 = (len & 0x0000FF00) >> 8;
-		char c4 = (len & 0x000000FF);
-		msg.insert(msg.begin(), c4);
-		msg.insert(msg.begin(), c3);
-		msg.insert(msg.begin(), c2);
-		msg.insert(msg.begin(), c1);
-		p = (char*)malloc(len);
-		memcpy(p, msg.c_str(), len);
-
 		CreateThread(
 			NULL,//default security attributes
 			0,//use default stack size
@@ -133,8 +122,6 @@ void pipe_start_thread(std::string &msg)
 			0,//use default creation flags
 			&dwThreadId);//returns the thread identifier
 	}
-
-
 
 	//Check there turn value for success.
 	//if (dwThreadId == NULL)

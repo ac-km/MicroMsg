@@ -89,11 +89,11 @@
     <ClCompile Include="..\Common\Common.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="MyListCtrl.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
     <ClCompile Include="ParseProto.cpp">
       <Filter>protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="MyListCtrl.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

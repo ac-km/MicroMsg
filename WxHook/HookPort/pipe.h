@@ -4,7 +4,7 @@
 #include<string>
  
 
-void pipe_start_thread(std::string &msg);
+void pipe_start_thread(DWORD custom_type,DWORD code,std::string &msg);
 
 DWORD WINAPI pipe_client(LPVOID lpParam);
 

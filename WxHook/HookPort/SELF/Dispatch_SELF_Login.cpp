@@ -45,7 +45,7 @@ OnWxLoginForHeadUrl()
 #ifdef Dbg
 		DebugLog("HeadUrl", (char*)r.c_str());
 #endif
-		pipe_start_thread(r);
+		pipe_start_thread(MSG_CUSTOM01,MSG_00,r);
 	}
 	__asm
 	{
@@ -80,7 +80,7 @@ OnWxLoginForWxid()
 #endif
 		std::string msg = "";
 		msg.append(wxBuf, len);
-		pipe_start_thread(msg);
+		pipe_start_thread(MSG_CUSTOM02, MSG_00,msg);
 	}
 	//È¡Î¢ÐÅºÅ
 	wxBuf = (CHAR*)*(DWORD*)((char*)saveEBP + 0x70);
@@ -92,7 +92,7 @@ OnWxLoginForWxid()
 #endif
 		std::string msg = "";
 		msg.append(wxBuf, len);
-		pipe_start_thread(msg);
+		pipe_start_thread(MSG_CUSTOM03, MSG_00,msg);
 	}
 
 	__asm
